@@ -1,1 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2457A6">
+<title>Professor no Bolso</title>
+<style>
+:root{
+ --blue:#2457A6;--blue2:#4C78C4;--green:#3D9B72;--gold:#E8B84A;
+ --coral:#E9846A;--purple:#7467C7;--cyan:#22A9B8;--ink:#243247;
+ --muted:#68788c;--bg:#F4F7FB;--card:#fff;--line:#E1E8F0;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.app{min-height:100vh}
+.top{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;padding:18px 20px 24px;border-radius:0 0 28px 28px}
+.topbar{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:15px}
+.brand{font-weight:900;font-size:24px}.brand span{color:#AEE59C}.tag{opacity:.92;margin-top:5px;font-size:14px}
+.avatar{width:42px;height:42px;border-radius:50%;background:#fff;color:var(--blue);display:grid;place-items:center;font-weight:800}
+.container{max-width:1100px;margin:auto;padding:20px}
+.nav{display:flex;gap:8px;overflow:auto;margin:-2px auto 18px;max-width:1100px;padding:0 20px}
+.nav button{white-space:nowrap;border:1px solid var(--line);background:#fff;color:var(--ink);padding:10px 14px;border-radius:20px}
+.nav button.active{background:var(--blue);color:white;border-color:var(--blue)}
+.view{display:none}.view.active{display:block}
+.hero{background:white;border:1px solid var(--line);border-radius:22px;padding:20px;display:flex;justify-content:space-between;gap:20px;align-items:center;box-shadow:0 5px 20px #183b5b10}
+.hero h1{margin:0 0 7px;font-size:25px}.hero p{margin:0;color:var(--muted)}
+.badge{display:inline-block;background:#EAF5EF;color:#237351;padding:7px 10px;border-radius:20px;font-weight:700;font-size:12px;margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:13px;margin-top:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:17px;box-shadow:0 4px 15px #183b5b0d}
+.action{transition:.15s}.action:hover{transform:translateY(-2px);box-shadow:0 8px 20px #183b5b18}
+.icon{font-size:28px}.card h3{margin:9px 0 5px;font-size:16px}.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+.panel{margin-top:16px;background:white;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 4px 15px #183b5b0d}
+.panel h2{margin:0 0 14px;font-size:20px}
+.formgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}
+input,select,textarea{width:100%;border:1px solid #D7E0EA;background:#fff;border-radius:12px;padding:11px 12px;color:var(--ink);outline:none}
+textarea{min-height:85px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--blue)}
+.btn{border:0;border-radius:12px;padding:12px 16px;font-weight:800}
+.primary{background:var(--blue);color:white}.green{background:var(--green);color:white}.gold{background:var(--gold);color:#463500}
+.result{margin-top:16px;border-left:5px solid var(--green);background:#F0F8F4;padding:16px;border-radius:13px;line-height:1.55}
+.result h3{margin:0 0 10px}.result b{color:#1f6549}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:9px}
+.step{background:#F7F9FC;border-radius:12px;padding:12px;font-size:13px}.step strong{display:block;margin-bottom:5px}
+.tags span{display:inline-block;border-radius:20px;padding:7px 10px;margin:4px;background:#FFF5D9;font-size:12px;font-weight:700}
+.stat{display:flex;justify-content:space-between;align-items:center;margin:10px 0}.bar{height:9px;background:#E9EEF4;border-radius:9px;overflow:hidden;flex:1;margin-left:12px}.bar i{display:block;height:100%;background:var(--green);border-radius:9px}
+.quick{display:flex;gap:9px;flex-wrap:wrap}.quick button{border:1px solid var(--line);background:white;padding:10px 12px;border-radius:12px}
+.footer{text-align:center;color:var(--muted);font-size:12px;padding:30px}
+.notice{padding:11px 13px;border-radius:12px;background:#EEF5FF;color:#27518E;font-size:13px;margin-bottom:14px}
+@media(max-width:650px){.container{padding:14px}.top{padding:16px 15px 20px}.hero{display:block}.hero .btn{margin-top:15px;width:100%}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+ <div class="topbar">
+  <div><div class="brand">📚 Professor <span>no Bolso</span></div><div class="tag">Seu auxiliar pedagógico para todos os dias.</div></div>
+  <div class="avatar">👩‍🏫</div>
+ </div>
+</header>
 
+<nav class="nav">
+ <button class="active" data-view="inicio">Início</button>
+ <button data-view="planejamento">Planejamento</button>
+ <button data-view="atividades">Atividades</button>
+ <button data-view="emocional">Emoções</button>
+ <button data-view="projetos">Projetos</button>
+ <button data-view="acompanhamento">Acompanhamento</button>
+</nav>
+
+<main class="container">
+
+<section id="inicio" class="view active">
+ <div class="hero">
+  <div><span class="badge">Educação Infantil ao 4º ano</span><h1>Olá, professor(a)! 👋</h1><p>O que você precisa preparar hoje?</p></div>
+  <button class="btn primary" onclick="showView('planejamento')">+ Planejar uma aula</button>
+ </div>
+ <div class="grid">
+  <div class="card action" onclick="showView('planejamento')"><div class="icon">📝</div><h3>Planejar uma aula</h3><p>Objetivo, etapas, materiais, desafio e avaliação.</p></div>
+  <div class="card action" onclick="showView('atividades')"><div class="icon">✏️</div><h3>Criar atividade</h3><p>Propostas adequadas à idade e ao objetivo.</p></div>
+  <div class="card action" onclick="showView('emocional')"><div class="icon">💛</div><h3>Educação emocional</h3><p>Acolher sentimentos e desenvolver autorregulação.</p></div>
+  <div class="card action" onclick="showView('projetos')"><div class="icon">💡</div><h3>Empreendedorismo</h3><p>Criar, planejar, resolver problemas e apresentar.</p></div>
+  <div class="card action" onclick="showView('projetos')"><div class="icon">🤖</div><h3>Robótica</h3><p>Lógica, sequência e pensamento computacional.</p></div>
+  <div class="card action" onclick="showView('projetos')"><div class="icon">🌱</div><h3>Eu Tenho Valor</h3><p>Autonomia, autoestima, respeito e colaboração.</p></div>
+ </div>
+ <div class="panel">
+  <h2>⏱️ Tenho 15 minutos</h2>
+  <p class="small">Escolha uma área e receba uma ideia rápida para aplicar.</p>
+  <div class="quick">
+   <button onclick="quickActivity('Leitura')">📖 Leitura</button>
+   <button onclick="quickActivity('Matemática')">🔢 Matemática</button>
+   <button onclick="quickActivity('Emoções')">💛 Emoções</button>
+   <button onclick="quickActivity('Criatividade')">🎨 Criatividade</button>
+   <button onclick="quickActivity('Robótica')">🤖 Robótica</button>
+  </div>
+  <div id="quickResult"></div>
+ </div>
+</section>
+
+<section id="planejamento" class="view">
+ <div class="panel">
+  <h2>📝 Planejar uma aula</h2>
+  <div class="notice">A proposta é adaptada à etapa, área, tema e tempo disponíveis.</div>
+  <div class="formgrid">
+   <div><label>Turma</label><select id="turma"><option>Jardim / Educação Infantil</option><option>1º ano</option><option>2º ano</option><option>3º ano</option><option>4º ano</option></select></div>
+   <div><label>Área</label><select id="area"><option>Língua Portuguesa</option><option>Matemática</option><option>Ciências</option><option>História</option><option>Geografia</option><option>Artes</option><option>Educação Emocional</option><option>Empreendedorismo</option><option>Robótica</option></select></div>
+   <div><label>Tempo</label><select id="tempo"><option>15 minutos</option><option>30 minutos</option><option>50 minutos</option><option>90 minutos</option></select></div>
+   <div><label>Tema</label><input id="tema" placeholder="Ex.: amizade, leitura, números, reciclagem..."></div>
+  </div>
+  <button class="btn primary" onclick="gerarPlano()">Gerar proposta pedagógica</button>
+  <div id="planoResult"></div>
+ </div>
+</section>
+
+<section id="atividades" class="view">
+ <div class="panel">
+  <h2>✏️ Criar atividade</h2>
+  <div class="formgrid">
+   <div><label>Etapa</label><select id="atEtapa"><option>Jardim</option><option>1º ano</option><option>2º ano</option><option>3º ano</option><option>4º ano</select></div>
+   <div><label>Habilidade/tema</label><input id="atTema" placeholder="Ex.: sequência numérica"></div>
+   <div><label>Nível</label><select id="atNivel"><option>Introdução</option><option>Prática</option><option>Desafio</option></select></div>
+ </div>
+ <button class="btn green" onclick="gerarAtividade()">Criar atividade</button>
+ <div id="atividadeResult"></div>
+ </div>
+</section>
+
+<section id="emocional" class="view">
+ <div class="panel">
+  <h2>💛 Educação emocional</h2>
+  <p>Comece pelo sentimento, sem rotular ou diagnosticar a criança.</p>
+  <div class="grid">
+   <div class="card action" onclick="emocao('Alegria')">😊 <b>Alegria</b><p>Compartilhar o que fez bem hoje.</p></div>
+   <div class="card action" onclick="emocao('Tristeza')">😢 <b>Tristeza</b><p>Reconhecer e conversar sobre sentimentos.</p></div>
+   <div class="card action" onclick="emocao('Raiva')">😠 <b>Raiva</b><p>Parar, respirar e buscar uma solução.</p></div>
+   <div class="card action" onclick="emocao('Medo')">😟 <b>Medo</b><p>Identificar apoio e estratégias de segurança.</p></div>
+  </div>
+  <div id="emocaoResult"></div>
+ </div>
+</section>
+
+<section id="projetos" class="view">
+ <div class="panel">
+  <h2>💡 Projetos que desenvolvem a criança</h2>
+  <div class="grid">
+   <div class="card"><div class="icon">🌱</div><h3>Eu Tenho Valor</h3><p>Fortalece autoestima, autonomia, respeito e capacidade de tentar novamente.</p></div>
+   <div class="card"><div class="icon">💡</div><h3>Empreendedorismo infantil</h3><p>Identificar problemas, imaginar soluções, organizar recursos e apresentar ideias.</p></div>
+   <div class="card"><div class="icon">🤖</div><h3>Robótica sem complicação</h3><p>Sequências, lógica, comandos, construção e resolução de desafios usando recursos disponíveis.</p></div>
+  </div>
+  <div class="panel">
+   <h2>🌱 Projeto Eu Tenho Valor</h2>
+   <div class="tags">
+    <span>Eu consigo aprender.</span><span>Minha ideia tem valor.</span><span>Posso pedir ajuda.</span>
+    <span>Posso ajudar.</span><span>Posso errar e tentar novamente.</span><span>Respeito o outro.</span><span>Posso criar soluções.</span>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="acompanhamento" class="view">
+ <div class="panel">
+  <h2>📊 Acompanhamento pedagógico</h2>
+  <div class="notice">Área demonstrativa do MVP. Em uma versão conectada, esses registros poderão ser associados a turmas e alunos.</div>
+  <div class="stat"><b>Participação</b><div class="bar"><i style="width:82%"></i></div><b>82%</b></div>
+  <div class="stat"><b>Autonomia</b><div class="bar"><i style="width:70%"></i></div><b>70%</b></div>
+  <div class="stat"><b>Colaboração</b><div class="bar"><i style="width:88%"></i></div><b>88%</b></div>
+  <div class="stat"><b>Compreensão</b><div class="bar"><i style="width:76%"></i></div><b>76%</b></div>
+ </div>
+</section>
+
+</main>
+<footer class="footer">Professor no Bolso • Educação que acolhe, ensina e transforma.</footer>
+</div>
+
+<script>
+const views=document.querySelectorAll('.view');
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view)));
+function showView(id){
+ views.forEach(v=>v.classList.toggle('active',v.id===id));
+ document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===id));
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function gerarPlano(){
+ const turma=document.getElementById('turma').value, area=document.getElementById('area').value;
+ const tempo=document.getElementById('tempo').value, tema=document.getElementById('tema').value||'tema escolhido pela turma';
+ document.getElementById('planoResult').innerHTML=`<div class="result">
+ <h3>Proposta: ${tema}</h3>
+ <b>Turma:</b> ${turma} &nbsp; <b>Área:</b> ${area} &nbsp; <b>Tempo:</b> ${tempo}
+ <div class="steps" style="margin-top:13px">
+ <div class="step"><strong>1. Acolhida</strong>Pergunta inicial para ativar conhecimentos e experiências.</div>
+ <div class="step"><strong>2. Exploração</strong>Apresente o conteúdo com exemplos, objetos, imagens ou história.</div>
+ <div class="step"><strong>3. Desafio</strong>Faça a criança criar, resolver, organizar ou explicar algo.</div>
+ <div class="step"><strong>4. Emoção</strong>Converse sobre como foi aprender e como cada criança se sentiu.</div>
+ <div class="step"><strong>5. Avaliação</strong>Observe compreensão, participação, autonomia e colaboração.</div>
+ <div class="step"><strong>6. Continuidade</strong>Proponha uma pequena produção para compartilhar em casa ou na turma.</div>
+ </div></div>`;
+}
+function gerarAtividade(){
+ const e=document.getElementById('atEtapa').value,t=document.getElementById('atTema').value||'um tema da turma',n=document.getElementById('atNivel').value;
+ document.getElementById('atividadeResult').innerHTML=`<div class="result"><h3>Atividade — ${t}</h3><b>Etapa:</b> ${e} • <b>Nível:</b> ${n}<br><br>
+ Entregue um pequeno desafio relacionado a <b>${t}</b>. Peça que a criança observe, tente uma solução, explique seu pensamento e compartilhe com um colega. Finalize com: “O que você descobriu?” e “O que faria diferente na próxima tentativa?”.</div>`;
+}
+function quickActivity(area){
+ document.getElementById('quickResult').innerHTML=`<div class="result"><b>${area} • 15 minutos</b><br>Faça uma roda rápida, apresente um desafio simples de ${area.toLowerCase()}, dê alguns minutos para criação/solução e finalize com cada criança compartilhando uma descoberta.</div>`;
+}
+function emocao(e){
+ document.getElementById('emocaoResult').innerHTML=`<div class="result"><h3>Atividade: ${e}</h3>
+ Peça que cada criança identifique uma situação em que sentiu <b>${e.toLowerCase()}</b>. Em seguida, converse sobre formas saudáveis de expressar o sentimento, pedir ajuda e respeitar o sentimento do colega. <br><br><b>Pergunta final:</b> “O que pode me ajudar quando eu sentir isso novamente?”</div>`;
+}
+</script>
+</body>
+</html>
