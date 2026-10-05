@@ -1,1 +1,139 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1F3A5F">
+<title>Professor no Bolso</title>
+<style>
+:root{--ink:#243247;--muted:#68788c;--bg:#F6F4EF;--line:#E4E0D6;--navy:#1F3A5F;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(--ink)}
+button{font:inherit;cursor:pointer}
+.top{background:linear-gradient(135deg,var(--navy),#3A6EA5);color:#fff;padding:22px 20px 30px;border-radius:0 0 30px 30px;text-align:center}
+.top h1{margin:0;font-size:28px;letter-spacing:.5px}.top h1 span{color:#F2D28B}
+.top p{margin:6px 0 0;opacity:.9;font-family:Arial,sans-serif;font-size:14px}
+.wrap{max-width:1000px;margin:auto;padding:18px}
+h2{font-size:13px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin:20px 0 10px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips button{border:1px solid var(--line);background:var(--card);padding:10px 16px;border-radius:22px;font-family:Arial,sans-serif;font-weight:700;color:var(--ink)}
+.chips button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.sub{border:2px solid transparent;background:var(--card);border-radius:18px;padding:14px;text-align:left;box-shadow:0 4px 14px #1f3a5f12;transition:.15s;border-top:6px solid var(--c)}
+.sub:hover{transform:translateY(-2px)}.sub.on{border-color:var(--c);background:var(--s)}
+.sub b{display:block;font-family:Arial,sans-serif;font-size:14px;color:var(--ink);margin-top:6px}
+.sub em{font-size:26px;font-style:normal}
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 12px}
+.btn{border:0;border-radius:12px;padding:12px 18px;font-family:Arial,sans-serif;font-weight:800;color:#fff;background:var(--navy)}
+.btn.alt{background:#fff;color:var(--navy);border:1px solid var(--navy)}
+.sheet{background:#fff;color:#243247;border-radius:6px;box-shadow:0 8px 30px #1f3a5f1c;margin-bottom:24px;overflow:hidden;border-top:12px solid var(--c)}
+.sh{padding:22px 28px 10px;display:flex;justify-content:space-between;gap:14px;align-items:flex-start;border-bottom:2px solid var(--c)}
+.sh h3{margin:0;font-size:22px;color:var(--c)}.sh small{font-family:Arial,sans-serif;color:var(--muted)}
+.sh .ic{font-size:38px}
+.f{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;padding:14px 28px;font-family:Arial,sans-serif;font-size:12px;color:var(--muted)}
+.f div{border-bottom:1px solid #bbb;padding-bottom:16px}
+.tema{margin:4px 28px 0;padding:12px 16px;background:var(--s);border-left:5px solid var(--c);border-radius:8px;font-family:Arial,sans-serif;font-size:14px}
+.q{padding:14px 28px 0}.q p{margin:0 0 6px;line-height:1.5}.q p b{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--c);color:#fff;font:700 13px Arial;margin-right:8px}
+.q i{display:block;height:28px;border-bottom:1px solid #cfcfcf}
+.w{margin:18px 28px;padding:14px 16px;border:2px dashed var(--c);border-radius:12px;background:var(--s)}
+.w strong{color:var(--c);font-family:Arial,sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:1px}
+.w p{margin:6px 0 0;line-height:1.5}
+.ft{padding:10px 28px 18px;font:12px Arial,sans-serif;color:var(--muted);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#E6ECF4;--muted:#9AA9BC;--bg:#141B26;--line:#2B3748;--card:#1C2636}}
+:root[data-theme="dark"]{--ink:#E6ECF4;--muted:#9AA9BC;--bg:#141B26;--line:#2B3748;--card:#1C2636}
+@media(max-width:600px){.f{grid-template-columns:1fr}.sh,.q,.f{padding-left:16px;padding-right:16px}.tema,.w{margin-left:16px;margin-right:16px}}
+@media print{body{background:#fff}.top,.ui{display:none}.wrap{padding:0;max-width:none}.sheet{box-shadow:none;border-radius:0;page-break-after:always;margin:0}@page{size:A4;margin:12mm}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header class="top"><h1>📚 Professor <span>no Bolso</span></h1><p>Folhas prontas de Jardim ao 4º ano — escolha a série e a matéria.</p></header>
+<main class="wrap">
+<div class="ui">
+<h2>1 · Série</h2><div class="chips" id="gr"></div>
+<h2>2 · Matéria</h2><div class="grid" id="sb"></div>
+<div class="bar"><button class="btn" onclick="window.print()">🖨️ Imprimir esta folha</button><button class="btn alt" onclick="all()">📘 Imprimir caderno completo da série</button></div>
+</div>
+<div id="out"></div>
+</main>
+<script>
+const G=['Jardim','1º ano','2º ano','3º ano','4º ano'];
+const S=[
+{k:'Língua Portuguesa',e:'📖',c:'#2457A6',s:'#EAF0FA',p:'Azul transmite confiança e concentração para ler e escrever.',d:[
+'Meu nome e as letras|Ligue cada figura à letra inicial do seu nome.|Circule no quadro as letras do seu nome.|Desenhe algo que começa com a primeira letra do seu nome.|Fazer um crachá decorado com o nome e colar na sala.',
+'Sílabas e palavras|Separe em sílabas: BOLA, GATO, SAPO.|Complete com a sílaba que falta: CA__, __LA, PA__.|Forme 3 palavras com as sílabas MA, LA, TO, PI.|Montar um mini-dicionário ilustrado com 5 palavras.',
+'Frases e pontuação|Coloque ponto final, ? ou ! em: Que dia lindo / Você gosta de pizza / Eu moro aqui.|Ordene e forme uma frase: brinca / o / parque / no / Pedro.|Escreva uma frase sobre seu animal preferido.|Criar um cartaz com 3 frases sobre a escola dos sonhos.',
+'Texto narrativo|Leia a história do professor e escreva quem são os personagens.|Onde e quando a história acontece? Responda em uma frase.|Escreva o começo, o meio e o fim da história.|Produzir uma história em quadrinhos de 4 cenas.',
+'Notícia e carta|Circule o título, o lide e o autor na notícia entregue.|Reescreva uma frase trocando palavras por sinônimos.|Escreva uma carta de 5 linhas para um colega, com saudação e despedida.|Montar o jornal da turma com 2 notícias e 1 entrevista.']},
+{k:'Matemática',e:'🔢',c:'#6A5CC2',s:'#EFEDFA',p:'Roxo estimula o raciocínio, a lógica e a imaginação.',d:[
+'Números de 1 a 5|Conte as figuras e circule o número certo.|Ligue cada quantidade ao numeral.|Cubra o numeral pontilhado de 1 a 5.|Fazer uma coleção de 5 objetos e contar com a turma.',
+'Adição até 20|Resolva: 4+3, 8+5, 10+6.|Complete a sequência: 2, 4, __, 8, __.|Ana tinha 7 figurinhas e ganhou 5. Com quantas ficou?|Montar um dominó de somas até 20.',
+'Dezenas, soma e subtração|Arme e resolva: 45+23 e 68−34.|Escreva por extenso: 35, 52 e 99.|Marta tinha 50 reais e gastou 18. Quanto sobrou?|Criar uma lojinha de sala com preços até 100.',
+'Multiplicação|Resolva: 3×4, 5×6, 7×2.|Complete a tabuada do 5 até 5×10.|Em 4 caixas há 6 lápis em cada. Quantos lápis ao todo?|Construir um cartaz com a tabuada do 2 ao 5.',
+'Frações e medidas|Pinte 3/4 de uma figura dividida em 4 partes.|Compare 1/2 e 1/4: qual é maior? Explique.|Uma receita usa 250 g de farinha. Quantos gramas em 3 receitas?|Fazer uma receita da turma medindo os ingredientes.']},
+{k:'Ciências',e:'🌿',c:'#2F8F66',s:'#E8F5EE',p:'Verde lembra natureza, crescimento e curiosidade.',d:[
+'Meu corpo e os sentidos|Ligue cada órgão do sentido à parte do corpo.|Desenhe algo que você gosta de cheirar.|Circule o que usamos para ouvir.|Fazer a caixa surpresa dos sentidos.',
+'Seres vivos|Marque o que é ser vivo: pedra, gato, árvore.|Desenhe o que uma planta precisa para crescer.|Escreva 2 cuidados com os animais.|Plantar um feijão no algodão e observar.',
+'Água e meio ambiente|Pinte os estados da água: sólido, líquido e gasoso.|Escreva 2 formas de economizar água.|Ligue cada lixo à lixeira certa.|Criar uma campanha de economia de água na escola.',
+'Animais e cadeia alimentar|Classifique em carnívoro, herbívoro ou onívoro: onça, vaca, galinha.|Monte a cadeia: sol → planta → __ → __.|Explique por que os animais precisam de abrigo.|Fazer um painel de animais da Caatinga.',
+'Corpo humano e saúde|Nomeie 3 órgãos e suas funções.|Explique por que lavar as mãos evita doenças.|Monte um cardápio saudável para um dia.|Medir o pulso antes e depois de correr e comparar.']},
+{k:'História',e:'🏺',c:'#B07A1E',s:'#FBF2E1',p:'Âmbar evoca memória, tradição e acolhimento do passado.',d:[
+'Minha família|Desenhe sua família.|Circule quem mora com você.|Cole um desenho de um momento especial em família.|Fazer a árvore da família com carinhas.',
+'Minha história|Escreva seu nome, idade e onde nasceu.|Numere em ordem: criança, bebê, adolescente.|Desenhe como você era bebê e como é hoje.|Montar a linha do tempo da minha vida.',
+'Escola e comunidade|Liste 3 profissionais da escola e o que fazem.|Desenhe um lugar importante do seu bairro.|Escreva uma regra de convivência.|Entrevistar um morador antigo do bairro.',
+'Povos indígenas e a cidade|Escreva 2 contribuições dos povos indígenas para a cultura brasileira.|Compare como era a cidade antigamente e hoje.|Explique o que é patrimônio.|Fazer um mural do patrimônio da nossa cidade.',
+'Brasil colonial e migrações|Ordene em uma linha do tempo: 1500, 1822, 1888.|Cite 2 heranças culturais africanas no Brasil.|Qual a diferença entre migrar e imigrar?|Pesquisar a origem de uma família da turma e apresentar.']},
+{k:'Geografia',e:'🌎',c:'#1D93A3',s:'#E5F5F7',p:'Turquesa lembra água, horizontes e exploração tranquila.',d:[
+'Onde eu moro|Desenhe sua casa e a rua.|Circule o caminho de casa até a escola.|Pinte o que você vê da janela.|Fazer a maquete da sala com caixinhas.',
+'Casa, escola e lugares|Ligue cada ambiente da casa a um objeto: cozinha, quarto, banheiro.|Desenhe a planta da sua sala de aula.|Indique esquerda e direita com setas.|Fazer um mapa do trajeto casa-escola.',
+'Paisagens|Faça um desenho de paisagem natural e outro de paisagem cultural.|Escreva 2 elementos do campo e 2 da cidade.|O que mudou na paisagem do bairro?|Montar um álbum de paisagens com recortes.',
+'Mapas e orientação|Complete a rosa dos ventos: N, S, L, O.|Use a legenda do mapa para localizar a escola.|Desenhe um mapa do pátio com legenda.|Fazer uma caça ao tesouro usando pontos cardeais.',
+'Regiões do Brasil|Ligue as 5 regiões a uma característica de cada.|Pinte no mapa a região Nordeste.|Compare o clima do Sertão e o do litoral.|Criar um guia turístico de uma região.']},
+{k:'Artes',e:'🎨',c:'#DE7358',s:'#FCEEEA',p:'Coral desperta criatividade, calor e expressão.',d:[
+'Cores primárias|Pinte os círculos de azul, amarelo e vermelho.|Misture duas cores e descubra uma nova.|Faça uma pintura livre com os dedos.|Montar a galeria de arte da turma.',
+'Formas e colagem|Recorte e cole formas para criar um bicho.|Desenhe usando só linhas retas e curvas.|Nomeie as formas que você usou.|Fazer um mosaico de papel.',
+'Cores quentes e frias|Pinte um sol com cores quentes e um mar com cores frias.|Circule as cores quentes na paleta.|Desenhe como você se sente hoje usando cores.|Pintar um autorretrato com cores que representam você.',
+'Arte e cultura popular|Desenhe um brinquedo ou uma festa da cultura popular.|Cite uma manifestação artística que você conhece.|Crie um padrão repetido de cores e formas.|Produzir uma máscara de papel machê.',
+'Perspectiva e expressão|Desenhe uma rua que diminui ao longe.|Escolha uma obra e descreva o que sente ao vê-la.|Crie uma cena usando luz e sombra.|Organizar uma exposição com legenda de cada obra.']},
+{k:'Educação Emocional',e:'💛',c:'#CF5F8C',s:'#FBEAF1',p:'Rosa transmite afeto, empatia e segurança emocional.',d:[
+'Reconhecendo emoções|Ligue a carinha à emoção correspondente.|Desenhe uma carinha para o que sente hoje.|Pinte o termômetro das emoções.|Fazer o cantinho da calma com almofadas.',
+'Respirar e acalmar|Pinte a emoção do dia e diga por quê.|Treine a respiração da flor e da vela 5 vezes.|Desenhe algo que ajuda você a ficar calmo.|Criar o potinho da calma.',
+'Raiva e solução|Escreva o que você pode fazer quando sentir raiva.|Complete: Eu me sinto __ quando __.|Desenhe um gesto gentil.|Fazer cartões de gentileza para colegas.',
+'Empatia|Como você ajudaria um colega triste? Escreva.|Observe cenas e escreva o que cada pessoa sente.|Escreva 3 qualidades de um colega.|Montar o mural dos elogios.',
+'Autorregulação e conflitos|Descreva um conflito e 2 jeitos de resolvê-lo.|Complete: Quando me estresso, posso __.|Escreva uma frase de incentivo para você.|Criar um diário das emoções por uma semana.']},
+{k:'Empreendedorismo',e:'💡',c:'#D99A0B',s:'#FDF4DC',p:'Dourado simboliza energia, otimismo e ideias que valem ouro.',d:[
+'Ideias que ajudam|Desenhe uma ideia para ajudar a escola.|Circule o que precisa para vender limonada.|Conte a um colega qual é a sua ideia.|Montar uma lojinha de faz de conta.',
+'Resolvendo problemas|Escreva um problema da sua sala.|Desenhe uma solução.|Liste 3 materiais para colocá-la em prática.|Apresentar a ideia para a turma em 1 minuto.',
+'Meu pequeno negócio|Invente um produto e dê um nome.|Defina um preço justo em reais.|Desenhe a embalagem.|Fazer uma feirinha de troca na escola.',
+'Plano de negócio simples|Preencha: o que vendo, para quem e por quanto.|Calcule custo e lucro de 10 sucos.|Crie um slogan.|Montar um cartaz de divulgação.',
+'Empreender com propósito|Identifique um problema da comunidade.|Monte um plano com custos, tarefas e responsáveis.|Escreva como medir o resultado.|Apresentar o projeto em um pitch de 3 minutos.']},
+{k:'Robótica',e:'🤖',c:'#0E7F95',s:'#E2F3F6',p:'Ciano remete a tecnologia, clareza e pensamento lógico.',d:[
+'Comandos e movimento|Siga as setas e leve o robô até a estrela.|Pinte as setas que viram à direita.|Dê comandos a um colega para andar até a porta.|Fazer um robô com caixas e tampinhas.',
+'Sequência|Ordene os passos para escovar os dentes.|Desenhe 4 comandos para o robô chegar ao tesouro.|Qual comando está errado? Circule.|Guiar um colega como robô em um tabuleiro.',
+'Algoritmos|Escreva os passos para fazer um sanduíche.|Encontre o erro no algoritmo e corrija.|Use setas para o robô desviar de um obstáculo.|Criar um percurso de papel no chão.',
+'Repetição|Reescreva usando repetição: frente, frente, frente.|Complete o código: repita 3 vezes __.|Desenhe um quadrado usando comandos.|Programar um colega para dançar com repetições.',
+'Condições e lógica|Complete: SE chover ENTÃO __ SENÃO __.|Crie um fluxograma para atravessar a rua com segurança.|Encontre e corrija o erro no código.|Construir um robô de papelão e explicar como funciona.']}
+];
+let g=0,s=0;
+const $=id=>document.getElementById(id);
+function sheet(i){
+ const m=S[i],[t,a,b,c,w]=m.d[g].split('|');
+ const q=[a,b,c].map((x,n)=>`<div class="q"><p><b>${n+1}</b>${x}</p><i></i><i></i></div>`).join('');
+ return `<article class="sheet" style="--c:${m.c};--s:${m.s}">
+ <div class="sh"><div><h3>${m.k}</h3><small>${G[g]} • Folha de atividades</small></div><div class="ic">${m.e}</div></div>
+ <div class="f"><div>Nome:</div><div>Turma:</div><div>Data:</div></div>
+ <div class="tema"><b>Tema:</b> ${t}</div>${q}
+ <div class="w"><strong>✂️ Trabalho prático</strong><p>${w}</p></div>
+ <div class="ft"><span>${m.p}</span><span>Professor no Bolso</span></div></article>`;
+}
+function render(){
+ $('gr').innerHTML=G.map((x,i)=>`<button class="${i===g?'on':''}" onclick="g=${i};render()">${x}</button>`).join('');
+ $('sb').innerHTML=S.map((m,i)=>`<button class="sub ${i===s?'on':''}" style="--c:${m.c};--s:${m.s}" onclick="s=${i};render()"><em>${m.e}</em><b>${m.k}</b></button>`).join('');
+ $('out').innerHTML=sheet(s);
+}
+function all(){$('out').innerHTML=S.map((_,i)=>sheet(i)).join('');window.print();render()}
+render();
+</script>
+</body>
+</html>
