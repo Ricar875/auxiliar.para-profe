@@ -1,1 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1F3A5F">
+<title>Professor no Bolso</title>
+<style>
+:root{--ink:#243247;--muted:#68788c;--bg:#F6F4EF;--line:#E4E0D6;--navy:#1F3A5F;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(--ink)}
+button{font:inherit;cursor:pointer}
+.top{background:linear-gradient(135deg,var(--navy),#3A6EA5);color:#fff;padding:22px 20px 30px;border-radius:0 0 30px 30px;text-align:center}
+.top h1{margin:0;font-size:28px;letter-spacing:.5px}.top h1 span{color:#F2D28B}
+.top p{margin:6px 0 0;opacity:.9;font-family:Arial,sans-serif;font-size:14px}
+.wrap{max-width:1000px;margin:auto;padding:18px}
+h2{font-size:13px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin:20px 0 10px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips button{border:1px solid var(--line);background:var(--card);padding:10px 16px;border-radius:22px;font-family:Arial,sans-serif;font-weight:700;color:var(--ink)}
+.chips button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.sub{border:2px solid transparent;background:var(--card);border-radius:18px;padding:14px;text-align:left;box-shadow:0 4px 14px #1f3a5f12;transition:.15s;border-top:6px solid var(--c)}
+.sub:hover{transform:translateY(-2px)}.sub.on{border-color:var(--c);background:var(--s)}
+.sub b{display:block;font-family:Arial,sans-serif;font-size:14px;color:var(--ink);margin-top:6px}
+.sub em{font-size:26px;font-style:normal}
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 12px}
+.btn{border:0;border-radius:12px;padding:12px 18px;font-family:Arial,sans-serif;font-weight:800;color:#fff;background:var(--navy)}
+.btn.alt{background:#fff;color:var(--navy);border:1px solid var(--navy)}
+.sheet{background:#fff;color:#243247;border-radius:6px;box-shadow:0 8px 30px #1f3a5f1c;margin-bottom:24px;overflow:hidden;border-top:12px solid var(--c)}
+.sh{padding:22px 28px 10px;display:flex;justify-content:space-between;gap:14px;align-items:flex-start;border-bottom:2px solid var(--c)}
+.sh h3{margin:0;font-size:22px;color:var(--c)}.sh small{font-family:Arial,sans-serif;color:var(--muted)}
+.sh .ic{font-size:38px}
+.f{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;padding:14px 28px;font-family:Arial,sans-serif;font-size:12px;color:var(--muted)}
+.f div{border-bottom:1px solid #bbb;padding-bottom:16px}
+.tema{margin:4px 28px 0;padding:12px 16px;background:var(--s);border-left:5px solid var(--c);border-radius:8px;font-family:Arial,sans-serif;font-size:14px}
+.q{padding:14px 28px 0}.q p{margin:0 0 6px;line-height:1.5}.q p b{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--c);color:#fff;font:700 13px Arial;margin-right:8px}
+.q i{display:block;height:28px;border-bottom:1px solid #cfcfcf}
+.w{margin:18px 28px;padding:14px 16px;border:2px dashed var(--c);border-radius:12px;background:var(--s)}
+.w strong{color:var(--c);font-family:Arial,sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:1px}
+.w p{margin:6px 0 0;line-height:1.5}
+.ft{padding:10px 28px 18px;font:12px Arial,sans-serif;color:var(--muted);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#E6ECF4;--muted:#9AA9BC;--bg:#141B26;--line:#2B3748;--card:#1C2636}}
+:root[data-theme="dark"]{--ink:#E6ECF4;--muted:#9AA9BC;--bg:#141B26;--line:#2B3748;--card:#1C2636}
+@media(max-width:600px){.f{grid-template-columns:1fr}.sh,.q,.f{padding-left:16px;padding-right:16px}.tema,.w{margin-left:16px;margin-right:16px}}
+@media print{body{background:#fff}.top,.ui{display:none}.wrap{padding:0;max-width:none}.sheet{box-shadow:none;border-radius:0;page-break-after:always;margin:0}@page{size:A4;margin:12mm}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+.pill{display:inline-block;margin-top:12px;background:#ffffff26;border:1px solid #ffffff66;padding:8px 18px;border-radius:22px;font-family:Arial,sans-serif;font-weight:700;font-size:15px}
+.tb{width:calc(100% - 56px);margin:14px 28px 0;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13px}
+.tb th{width:26%;background:var(--s);color:var(--c);text-align:left;vertical-align:top;padding:10px 12px;border:1px solid #ddd}
+.tb td{padding:10px 12px;border:1px solid #ddd;line-height:1.5;vertical-align:top}
+.chips.tabs button{font-size:13px}
+@media(max-width:600px){.tb{width:calc(100% - 32px);margin-left:16px;margin-right:16px}.tb th{width:32%}}
+.jd .q p{font-size:19px}.jd .q{padding-bottom:6px}
+.fg{width:100%;max-width:560px;height:auto;display:block;margin:6px auto}
+.dw{margin:8px 0;height:120px;border:2px dashed var(--c);border-radius:14px;display:flex;align-items:flex-end;padding:8px 12px;font:13px Arial;color:#68788c}
+.obj,.ar,.se{margin:12px 28px 0;padding:10px 14px;border-radius:10px;font:13px Arial;background:var(--s);line-height:1.5}
+.se span{float:right}
+.pn{background:var(--card);border-radius:18px;padding:20px;box-shadow:0 6px 22px #1f3a5f14;font-family:Arial,sans-serif}
+.pn h3{margin:0 0 6px;font-size:22px}.pn h4{margin:18px 0 8px}.pn p{color:var(--muted)}
+.sc{overflow-x:auto;margin:12px 0}.mt{width:100%;border-collapse:collapse;font-size:13px}
+.mt th{background:var(--navy);color:#fff;padding:9px;text-align:left}.mt td{padding:9px;border-bottom:1px solid var(--line)}
+.mini{border:1px solid var(--navy);background:none;border-radius:8px;padding:6px 10px;color:var(--navy);font-weight:700}
+.pg{display:flex;align-items:center;gap:8px;font-size:13px;margin:6px 0}.pg span{width:72px}.pg i{flex:1;height:10px;background:#dfe6ee;border-radius:8px;overflow:hidden}.pg u{display:block;height:100%;background:#3D9B72}
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.card2{border:1px solid var(--line);border-radius:14px;padding:14px;font-size:13px}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:12px 0}.kp div{background:var(--bg);border-radius:14px;padding:14px;text-align:center;font-size:13px}.kp b{display:block;font-size:28px;color:#3A6EA5}
+.ls li{margin:6px 0;line-height:1.5}
+.ms{border-top:8px solid var(--c);background:var(--s);color:#243247;border-radius:14px;padding:14px;margin:14px 0}
+.ms h4{margin:0 0 8px}.mi{display:block;padding:8px 0;font-size:15px;color:#243247}.mi input{width:20px;height:20px;margin-right:8px;vertical-align:middle}
+.gm{background:#FFF8E1;color:#243247;border-radius:14px;padding:14px}.gm p{color:#243247}.qq{font-size:24px;font-weight:700}
+.op{font-size:22px;font-weight:800;min-width:64px;padding:12px;margin:4px;border-radius:12px;border:2px solid #E8B84A;background:#fff;color:#243247}
+@media print{.roles,.mini,.gm .op,.pn .chips{display:none}.pn{box-shadow:none;padding:0}}
+</style>
+</head>
+<body>
+<header class="top"><h1>📚 Professor <span>no Bolso</span></h1><p>App completo para professores, coordenação, direção e alunos — Jardim ao 4º ano.</p><div class="pill" id="hd"></div></header>
+<main class="wrap">
+<div class="chips roles" id="rl"></div>
+<div class="ui" id="pc">
+<h2>1 · Série</h2><div class="chips" id="gr"></div>
+<h2>2 · Matéria</h2><div class="grid" id="sb"></div>
+<h2>3 · Documento</h2><div class="chips tabs" id="tp"></div>
+<div class="bar"><button class="btn" onclick="window.print()">🖨️ Imprimir este documento</button><button class="btn alt" onclick="all()">📘 Imprimir todas as matérias da série</button></div>
+</div>
+<div id="out"></div>
+</main>
+<script>
+const G=['Jardim','1º ano','2º ano','3º ano','4º ano'];
+const S=[
+{k:'Língua Portuguesa',e:'📖',c:'#2457A6',s:'#EAF0FA',p:'Azul transmite confiança e concentração para ler e escrever.',d:[
+'Meu nome e as letras|Ligue cada figura à letra inicial do seu nome.|Circule no quadro as letras do seu nome.|Desenhe algo que começa com a primeira letra do seu nome.|Fazer um crachá decorado com o nome e colar na sala.',
+'Sílabas e palavras|Separe em sílabas: BOLA, GATO, SAPO.|Complete com a sílaba que falta: CA__, __LA, PA__.|Forme 3 palavras com as sílabas MA, LA, TO, PI.|Montar um mini-dicionário ilustrado com 5 palavras.',
+'Frases e pontuação|Coloque ponto final, ? ou ! em: Que dia lindo / Você gosta de pizza / Eu moro aqui.|Ordene e forme uma frase: brinca / o / parque / no / Pedro.|Escreva uma frase sobre seu animal preferido.|Criar um cartaz com 3 frases sobre a escola dos sonhos.',
+'Texto narrativo|Leia a história do professor e escreva quem são os personagens.|Onde e quando a história acontece? Responda em uma frase.|Escreva o começo, o meio e o fim da história.|Produzir uma história em quadrinhos de 4 cenas.',
+'Notícia e carta|Circule o título, o lide e o autor na notícia entregue.|Reescreva uma frase trocando palavras por sinônimos.|Escreva uma carta de 5 linhas para um colega, com saudação e despedida.|Montar o jornal da turma com 2 notícias e 1 entrevista.']},
+{k:'Matemática',e:'🔢',c:'#6A5CC2',s:'#EFEDFA',p:'Roxo estimula o raciocínio, a lógica e a imaginação.',d:[
+'Números de 1 a 5|Conte as figuras e circule o número certo.|Ligue cada quantidade ao numeral.|Cubra o numeral pontilhado de 1 a 5.|Fazer uma coleção de 5 objetos e contar com a turma.',
+'Adição até 20|Resolva: 4+3, 8+5, 10+6.|Complete a sequência: 2, 4, __, 8, __.|Ana tinha 7 figurinhas e ganhou 5. Com quantas ficou?|Montar um dominó de somas até 20.',
+'Dezenas, soma e subtração|Arme e resolva: 45+23 e 68−34.|Escreva por extenso: 35, 52 e 99.|Marta tinha 50 reais e gastou 18. Quanto sobrou?|Criar uma lojinha de sala com preços até 100.',
+'Multiplicação|Resolva: 3×4, 5×6, 7×2.|Complete a tabuada do 5 até 5×10.|Em 4 caixas há 6 lápis em cada. Quantos lápis ao todo?|Construir um cartaz com a tabuada do 2 ao 5.',
+'Frações e medidas|Pinte 3/4 de uma figura dividida em 4 partes.|Compare 1/2 e 1/4: qual é maior? Explique.|Uma receita usa 250 g de farinha. Quantos gramas em 3 receitas?|Fazer uma receita da turma medindo os ingredientes.']},
+{k:'Ciências',e:'🌿',c:'#2F8F66',s:'#E8F5EE',p:'Verde lembra natureza, crescimento e curiosidade.',d:[
+'Meu corpo e os sentidos|Ligue cada órgão do sentido à parte do corpo.|Desenhe algo que você gosta de cheirar.|Circule o que usamos para ouvir.|Fazer a caixa surpresa dos sentidos.',
+'Seres vivos|Marque o que é ser vivo: pedra, gato, árvore.|Desenhe o que uma planta precisa para crescer.|Escreva 2 cuidados com os animais.|Plantar um feijão no algodão e observar.',
+'Água e meio ambiente|Pinte os estados da água: sólido, líquido e gasoso.|Escreva 2 formas de economizar água.|Ligue cada lixo à lixeira certa.|Criar uma campanha de economia de água na escola.',
+'Animais e cadeia alimentar|Classifique em carnívoro, herbívoro ou onívoro: onça, vaca, galinha.|Monte a cadeia: sol → planta → __ → __.|Explique por que os animais precisam de abrigo.|Fazer um painel de animais da Caatinga.',
+'Corpo humano e saúde|Nomeie 3 órgãos e suas funções.|Explique por que lavar as mãos evita doenças.|Monte um cardápio saudável para um dia.|Medir o pulso antes e depois de correr e comparar.']},
+{k:'História',e:'🏺',c:'#B07A1E',s:'#FBF2E1',p:'Âmbar evoca memória, tradição e acolhimento do passado.',d:[
+'Minha família|Desenhe sua família.|Circule quem mora com você.|Cole um desenho de um momento especial em família.|Fazer a árvore da família com carinhas.',
+'Minha história|Escreva seu nome, idade e onde nasceu.|Numere em ordem: criança, bebê, adolescente.|Desenhe como você era bebê e como é hoje.|Montar a linha do tempo da minha vida.',
+'Escola e comunidade|Liste 3 profissionais da escola e o que fazem.|Desenhe um lugar importante do seu bairro.|Escreva uma regra de convivência.|Entrevistar um morador antigo do bairro.',
+'Povos indígenas e a cidade|Escreva 2 contribuições dos povos indígenas para a cultura brasileira.|Compare como era a cidade antigamente e hoje.|Explique o que é patrimônio.|Fazer um mural do patrimônio da nossa cidade.',
+'Brasil colonial e migrações|Ordene em uma linha do tempo: 1500, 1822, 1888.|Cite 2 heranças culturais africanas no Brasil.|Qual a diferença entre migrar e imigrar?|Pesquisar a origem de uma família da turma e apresentar.']},
+{k:'Geografia',e:'🌎',c:'#1D93A3',s:'#E5F5F7',p:'Turquesa lembra água, horizontes e exploração tranquila.',d:[
+'Onde eu moro|Desenhe sua casa e a rua.|Circule o caminho de casa até a escola.|Pinte o que você vê da janela.|Fazer a maquete da sala com caixinhas.',
+'Casa, escola e lugares|Ligue cada ambiente da casa a um objeto: cozinha, quarto, banheiro.|Desenhe a planta da sua sala de aula.|Indique esquerda e direita com setas.|Fazer um mapa do trajeto casa-escola.',
+'Paisagens|Faça um desenho de paisagem natural e outro de paisagem cultural.|Escreva 2 elementos do campo e 2 da cidade.|O que mudou na paisagem do bairro?|Montar um álbum de paisagens com recortes.',
+'Mapas e orientação|Complete a rosa dos ventos: N, S, L, O.|Use a legenda do mapa para localizar a escola.|Desenhe um mapa do pátio com legenda.|Fazer uma caça ao tesouro usando pontos cardeais.',
+'Regiões do Brasil|Ligue as 5 regiões a uma característica de cada.|Pinte no mapa a região Nordeste.|Compare o clima do Sertão e o do litoral.|Criar um guia turístico de uma região.']},
+{k:'Artes',e:'🎨',c:'#DE7358',s:'#FCEEEA',p:'Coral desperta criatividade, calor e expressão.',d:[
+'Cores primárias|Pinte os círculos de azul, amarelo e vermelho.|Misture duas cores e descubra uma nova.|Faça uma pintura livre com os dedos.|Montar a galeria de arte da turma.',
+'Formas e colagem|Recorte e cole formas para criar um bicho.|Desenhe usando só linhas retas e curvas.|Nomeie as formas que você usou.|Fazer um mosaico de papel.',
+'Cores quentes e frias|Pinte um sol com cores quentes e um mar com cores frias.|Circule as cores quentes na paleta.|Desenhe como você se sente hoje usando cores.|Pintar um autorretrato com cores que representam você.',
+'Arte e cultura popular|Desenhe um brinquedo ou uma festa da cultura popular.|Cite uma manifestação artística que você conhece.|Crie um padrão repetido de cores e formas.|Produzir uma máscara de papel machê.',
+'Perspectiva e expressão|Desenhe uma rua que diminui ao longe.|Escolha uma obra e descreva o que sente ao vê-la.|Crie uma cena usando luz e sombra.|Organizar uma exposição com legenda de cada obra.']},
+{k:'Educação Emocional',e:'💛',c:'#CF5F8C',s:'#FBEAF1',p:'Rosa transmite afeto, empatia e segurança emocional.',d:[
+'Reconhecendo emoções|Ligue a carinha à emoção correspondente.|Desenhe uma carinha para o que sente hoje.|Pinte o termômetro das emoções.|Fazer o cantinho da calma com almofadas.',
+'Respirar e acalmar|Pinte a emoção do dia e diga por quê.|Treine a respiração da flor e da vela 5 vezes.|Desenhe algo que ajuda você a ficar calmo.|Criar o potinho da calma.',
+'Raiva e solução|Escreva o que você pode fazer quando sentir raiva.|Complete: Eu me sinto __ quando __.|Desenhe um gesto gentil.|Fazer cartões de gentileza para colegas.',
+'Empatia|Como você ajudaria um colega triste? Escreva.|Observe cenas e escreva o que cada pessoa sente.|Escreva 3 qualidades de um colega.|Montar o mural dos elogios.',
+'Autorregulação e conflitos|Descreva um conflito e 2 jeitos de resolvê-lo.|Complete: Quando me estresso, posso __.|Escreva uma frase de incentivo para você.|Criar um diário das emoções por uma semana.']},
+{k:'Empreendedorismo',e:'💡',c:'#D99A0B',s:'#FDF4DC',p:'Dourado simboliza energia, otimismo e ideias que valem ouro.',d:[
+'Ideias que ajudam|Desenhe uma ideia para ajudar a escola.|Circule o que precisa para vender limonada.|Conte a um colega qual é a sua ideia.|Montar uma lojinha de faz de conta.',
+'Resolvendo problemas|Escreva um problema da sua sala.|Desenhe uma solução.|Liste 3 materiais para colocá-la em prática.|Apresentar a ideia para a turma em 1 minuto.',
+'Meu pequeno negócio|Invente um produto e dê um nome.|Defina um preço justo em reais.|Desenhe a embalagem.|Fazer uma feirinha de troca na escola.',
+'Plano de negócio simples|Preencha: o que vendo, para quem e por quanto.|Calcule custo e lucro de 10 sucos.|Crie um slogan.|Montar um cartaz de divulgação.',
+'Empreender com propósito|Identifique um problema da comunidade.|Monte um plano com custos, tarefas e responsáveis.|Escreva como medir o resultado.|Apresentar o projeto em um pitch de 3 minutos.']},
+{k:'Robótica',e:'🤖',c:'#0E7F95',s:'#E2F3F6',p:'Ciano remete a tecnologia, clareza e pensamento lógico.',d:[
+'Comandos e movimento|Siga as setas e leve o robô até a estrela.|Pinte as setas que viram à direita.|Dê comandos a um colega para andar até a porta.|Fazer um robô com caixas e tampinhas.',
+'Sequência|Ordene os passos para escovar os dentes.|Desenhe 4 comandos para o robô chegar ao tesouro.|Qual comando está errado? Circule.|Guiar um colega como robô em um tabuleiro.',
+'Algoritmos|Escreva os passos para fazer um sanduíche.|Encontre o erro no algoritmo e corrija.|Use setas para o robô desviar de um obstáculo.|Criar um percurso de papel no chão.',
+'Repetição|Reescreva usando repetição: frente, frente, frente.|Complete o código: repita 3 vezes __.|Desenhe um quadrado usando comandos.|Programar um colega para dançar com repetições.',
+'Condições e lógica|Complete: SE chover ENTÃO __ SENÃO __.|Crie um fluxograma para atravessar a rua com segurança.|Encontre e corrija o erro no código.|Construir um robô de papelão e explicar como funciona.']}
+];
+let g=0,s=0;
+const $=id=>document.getElementById(id);
+function sheet(i){
+ const m=S[i],[t,a,b,c,w]=m.d[g].split('|');
+ const q=[a,b,c].map((x,n)=>`<div class="q"><p><b>${n+1}</b>${x}</p>${'<i></i>'.repeat(g>1?3:2)}</div>`).join('');
+ return `<article class="sheet" style="--c:${m.c};--s:${m.s}">
+ <div class="sh"><div><h3>${m.k} — ${G[g]}</h3><small>Folha de atividades</small></div><div class="ic">${m.e}</div></div>
+ <div class="f"><div>Nome:</div><div>Turma:</div><div>Data:</div></div>
+ <div class="tema"><b>Tema:</b> ${t}</div><div class="obj">🎯 <b>Objetivo:</b> praticar “${t}” em ${m.k}, com atenção e capricho.</div>${q}
+ <div class="w"><strong>✂️ Trabalho prático</strong><p>${w}</p></div>
+ <div class="ar"><b>⭐ Desafio:</b> invente uma pergunta parecida com a do exercício 1 e peça a um colega para responder.</div><div class="se"><b>Como me saí?</b> 😊 Muito bem &nbsp; 😐 Mais ou menos &nbsp; 😟 Preciso de ajuda <span>Visto: ________</span></div>
+ <div class="ft"><span>${m.p}</span><span>Professor no Bolso</span></div></article>`;
+}
+const V=[['ativ','📝 Folha de atividades'],['aula','📋 Plano de aula'],['sem','🗓️ Semanal'],['mes','📆 Mensal'],['tri','📈 Trimestral']];
+let v='ativ';
+const LB={aula:'Plano de aula',sem:'Plano semanal',mes:'Plano mensal',tri:'Plano trimestral'};
+function plan(i){
+ const m=S[i],[t,a,b,c,w]=m.d[g].split('|');
+ const R={
+ aula:[['Tema',t],['Objetivo','Compreender e praticar "'+t+'" em '+m.k+', com autonomia adequada a '+G[g]+'.'],['Materiais','Folha de atividades, lápis, lápis de cor e materiais do trabalho prático.'],['Acolhida (10 min)','Roda de conversa: o que já sabemos sobre "'+t+'"?'],['Explicação (15 min)','Apresente o tema com exemplos do dia a dia, objetos ou imagens e resolva o 1º exercício junto com a turma.'],['Prática (20 min)','1) '+a+'<br>2) '+b+'<br>3) '+c],['Trabalho prático',w],['Avaliação','Observe participação, compreensão e autonomia; anote quem precisa de apoio.'],['Fechamento (5 min)','Cada criança responde: "O que eu descobri hoje?"']],
+ sem:[['Segunda','Sondagem e apresentação de "'+t+'": roda de conversa e exemplos.'],['Terça','Exercício 1: '+a],['Quarta','Exercício 2: '+b],['Quinta','Exercício 3: '+c],['Sexta','Trabalho prático: '+w+'<br>Roda de avaliação da semana.'],['Avaliação','Observação diária, correção coletiva das folhas e registro de participação.']],
+ mes:[['Objetivo do mês','Dominar "'+t+'" em '+m.k+' com atividades graduais e produção final.'],['Semana 1','Sondagem, apresentação do tema e exercício 1: '+a],['Semana 2','Exercício 2: '+b+'<br>Atividade em duplas para reforço.'],['Semana 3','Exercício 3: '+c+'<br>Jogos ou leitura de aprofundamento.'],['Semana 4','Trabalho prático: '+w+'<br>Revisão e avaliação do mês.'],['Avaliação','Folhas corrigidas, trabalho prático e autoavaliação da turma.']],
+ tri:[['Objetivos do trimestre','Desenvolver, em '+m.k+' para '+G[g]+', as habilidades do tema "'+t+'": compreender, praticar e produzir.'],['Mês 1 · Introdução','Sondagem inicial, apresentação do tema e exercício 1: '+a+'<br>Quatro semanas de atividades curtas de familiarização.'],['Mês 2 · Prática','Exercícios 2 e 3: '+b+' / '+c+'<br>Atividades em duplas, jogos e revisão semanal.'],['Mês 3 · Produção e avaliação','Trabalho prático: '+w+'<br>Apresentação para a turma, avaliação final e portfólio.'],['Avaliação do trimestre','Observação contínua, folhas de atividades, trabalho prático e autoavaliação; relatório de acompanhamento por criança.']]
+ }[v];
+ const per={aula:'1 aula',sem:'1 semana',mes:'1 mês (4 semanas)',tri:'1 trimestre'}[v];
+ return `<article class="sheet" style="--c:${m.c};--s:${m.s}">
+ <div class="sh"><div><h3>${m.k} — ${G[g]}</h3><small>${LB[v]} • ${per}</small></div><div class="ic">${m.e}</div></div>
+ <div class="f"><div>Professor(a):</div><div><b>Matéria:</b> ${m.k}</div><div><b>Série:</b> ${G[g]}</div></div>
+ <div class="tema"><b>Tema:</b> ${t}</div>
+ <table class="tb">${R.map(x=>`<tr><th>${x[0]}</th><td>${x[1]}</td></tr>`).join('')}</table>
+ <div class="q"><p><b>✎</b>Observações do professor</p><i></i><i></i></div>
+ <div class="ft"><span>${m.p}</span><span>Professor no Bolso</span></div></article>`;
+}
+const SV=(h,b)=>`<svg viewBox="0 0 520 ${h}" class="fg" font-family="Arial">${b}</svg>`;
+const bx=(x,y)=>`<rect x="${x}" y="${y}" width="46" height="46" rx="8" fill="#fff" stroke="#999" stroke-width="2"/>`;
+const F={
+ let:t=>SV(100,`<text x="10" y="80" font-size="84" font-weight="900" fill="none" stroke="#7a8aa0" stroke-width="2.5" stroke-dasharray="2 6" stroke-linecap="round" letter-spacing="14">${t}</text>`),
+ row:(a,b)=>SV(80,a.map((e,i)=>`<text x="${12+i*70}" y="56" font-size="46">${e}</text>`).join('')+(b?bx(12+a.length*70,14):'')),
+ cnt:(e,n)=>SV(80,Array.from({length:n},(_,i)=>`<text x="${12+i*62}" y="56" font-size="44">${e}</text>`).join('')+`<text x="395" y="52" font-size="24">=</text>`+bx(440,14)),
+ seq:a=>F.row(a,1),
+ shp:()=>SV(120,`<g fill="#fff" stroke="#555" stroke-width="4"><circle cx="70" cy="60" r="44"/><rect x="170" y="16" width="88" height="88" rx="4"/><polygon points="345,14 395,104 295,104"/><polygon points="455,10 467,44 503,46 475,66 485,102 455,82 425,102 435,66 407,46 443,44"/></g>`),
+ mat:(l,r)=>SV(200,l.map((e,i)=>`<text x="20" y="${52+i*62}" font-size="40">${e}</text><circle cx="110" cy="${40+i*62}" r="9" fill="#555"/><circle cx="395" cy="${40+i*62}" r="9" fill="#555"/><text x="418" y="${47+i*62}" font-size="22" font-weight="700">${r[i]}</text>`).join('')),
+ path:(a,b)=>SV(130,`<text x="10" y="80" font-size="50">${a}</text><text x="440" y="80" font-size="50">${b}</text><path d="M75 65 C140 0 200 130 270 65 S380 30 435 65" fill="none" stroke="#E9846A" stroke-width="5" stroke-dasharray="4 12" stroke-linecap="round"/>`),
+ faces:a=>SV(100,a.map((e,i)=>`<circle cx="${70+i*125}" cy="50" r="46" fill="#fff" stroke="#999" stroke-width="2.5"/><text x="${70+i*125}" y="66" font-size="46" text-anchor="middle">${e}</text>`).join('')),
+ col:a=>SV(130,a.map((x,i)=>`<circle cx="${80+i*180}" cy="48" r="40" fill="#fff" stroke="${x[1]}" stroke-width="5"/><text x="${80+i*180}" y="115" font-size="20" font-weight="700" text-anchor="middle" fill="${x[1]}">${x[0]}</text>`).join('')),
+ order:a=>SV(130,a.map((e,i)=>`<text x="${40+i*170}" y="56" font-size="50">${e}</text>`+bx(42+i*170,72)).join('')),
+ box:t=>`<div class="dw">✏️ ${t}</div>`
+};
+const J=[
+()=>[['Cubra o pontilhado das vogais.',F.let('A E I O U')],['Ligue a figura à letra do começo do nome.',F.mat(['🍌','🐶','🌞'],['S','B','C'])],['',F.box('Desenhe algo que começa com a letra do seu nome.')]],
+()=>[['Conte e escreva quantos.',F.cnt('🍎',3)],['Continue o padrão.',F.seq(['🔴','🔵','🔴','🔵'])],['Pinte as formas.',F.shp()]],
+()=>[['Ligue o sentido ao órgão.',F.mat(['👁️','👂','👃'],['cheirar','ver','ouvir'])],['Circule o que é ser vivo.',F.faces(['🐱','🪨','🌳','🚗'])],['',F.box('Desenhe o que a planta precisa para crescer.')]],
+()=>[['Numere do mais novo ao mais velho.',F.order(['🧑','👶','🧒'])],['Circule quem mora com você.',F.faces(['👨','👩','👵','🧒'])],['',F.box('Desenhe a sua família.')]],
+()=>[['Siga o caminho de casa até a escola.',F.path('🏠','🏫')],['Conte as árvores do bairro.',F.cnt('🌳',4)],['',F.box('Desenhe a sua rua.')]],
+()=>[['Pinte cada círculo com a cor do nome.',F.col([['Azul','#2457A6'],['Amarelo','#D9A400'],['Vermelho','#D64545']])],['Pinte as formas com cores bonitas.',F.shp()],['',F.box('Desenho livre: faça uma obra de arte!')]],
+()=>[['Circule como você se sente hoje.',F.faces(['😊','😢','😠','😟'])],['Ligue a carinha à emoção.',F.mat(['😊','😢','😠'],['raiva','alegria','tristeza'])],['',F.box('Desenhe algo que deixa você calmo.')]],
+()=>[['Conte os limões da barraquinha.',F.cnt('🍋',4)],['Ligue o produto ao preço da lojinha.',F.mat(['🍋','🍎','🍰'],['R$ 5','R$ 3','R$ 1'])],['',F.box('Desenhe o seu produto para vender.')]],
+()=>[['Siga as setas até a estrela.',F.row(['➡️','➡️','⬇️','⬇️','⭐'])],['Continue o padrão do robô.',F.seq(['🤖','⚙️','🤖','⚙️'])],['',F.box('Desenhe o seu robô.')]]
+];
+function sheetJ(i){
+ const m=S[i],[t,,,,w]=m.d[0].split('|'),A=J[i]();
+ return `<article class="sheet jd" style="--c:${m.c};--s:${m.s}">
+ <div class="sh"><div><h3>${m.k} — ${G[0]}</h3><small>Folha de atividades • Pinte, cubra, ligue e desenhe!</small></div><div class="ic">${m.e}</div></div>
+ <div class="f"><div>Nome:</div><div>Turma:</div><div>Data:</div></div>
+ <div class="tema"><b>Tema:</b> ${t}</div>
+ ${A.map((x,n)=>`<div class="q"><p><b>${n+1}</b>${x[0]||'Mostre sua criatividade!'}</p>${x[1]}</div>`).join('')}
+ <div class="w"><strong>✂️ Trabalho prático</strong><p>${w}</p></div>
+ <div class="se"><b>Como me saí?</b> 😊 &nbsp; 😐 &nbsp; 😟 <span>Visto: ________</span></div>
+ <div class="ft"><span>${m.p}</span><span>Professor no Bolso</span></div></article>`;
+}
+function doc(i){return v==='ativ'?(g===0?sheetJ(i):sheet(i)):plan(i)}
+let rl='prof',Q={};
+const ROLES=[['prof','👩‍🏫 Professor'],['coord','🧭 Coordenação'],['dir','🏫 Direção'],['alu','🎒 Aluno']];
+const ld=()=>{try{return JSON.parse(localStorage.getItem('pnb')||'{}')}catch(e){return{}}};
+const sv=o=>{try{localStorage.setItem('pnb',JSON.stringify(o))}catch(e){}};
+function tog(k){const o=ld();o[k]=o[k]?0:1;sv(o);render()}
+const gch=()=>`<div class="chips">`+G.map((x,i)=>`<button class="${i===g?'on':''}" onclick="g=${i};Q={};render()">${x}</button>`).join('')+`</div>`;
+function pct(gi,x){const o=ld();let n=0;S.forEach((_,i)=>{if(o[gi+'-'+i+x])n++});return Math.round(n/9*100)}
+const bars=gi=>['p','a','v'].map((x,j)=>`<div class="pg"><span>${['Planejado','Aplicado','Avaliado'][j]}</span><i><u style="width:${pct(gi,x)}%"></u></i><b>${pct(gi,x)}%</b></div>`).join('');
+function coord(){
+ const o=ld();
+ const rows=S.map((m,i)=>{const k=g+'-'+i,cb=x=>`<td><input type="checkbox" ${o[k+x]?'checked':''} onchange="tog('${k+x}')"></td>`;
+ return `<tr><td>${m.e} <b>${m.k}</b></td><td>${m.d[g].split('|')[0]}</td>${cb('p')}${cb('a')}${cb('v')}<td><button class="mini" onclick="rl='prof';s=${i};v='aula';render()">Abrir plano</button></td></tr>`}).join('');
+ return `<section class="pn"><h3>🧭 Painel da Coordenação</h3><p>Marque o que foi planejado, aplicado e avaliado em ${G[g]}. Os registros ficam salvos neste aparelho.</p>${gch()}<div class="sc"><table class="mt"><tr><th>Matéria</th><th>Tema</th><th>Planejado</th><th>Aplicado</th><th>Avaliado</th><th></th></tr>${rows}</table></div>${bars(g)}<p><button class="btn" onclick="window.print()">🖨️ Imprimir painel</button></p></section>`;
+}
+function dir(){
+ const T=[['1º trimestre','Fev–Mai','Acolhida e diagnóstico, reunião de pais, avaliação do trimestre'],['2º trimestre','Jun–Set','Projetos integrados, feira de ciências e empreendedorismo, conselho de classe'],['3º trimestre','Out–Dez','Avaliação final, mostra de robótica, relatório de aprendizagem']];
+ let tot=0;G.forEach((_,i)=>{tot+=pct(i,'p')+pct(i,'a')+pct(i,'v')});tot=Math.round(tot/15);
+ return `<section class="pn"><h3>🏫 Painel da Direção</h3><p>Visão geral do planejamento da escola, de Jardim ao 4º ano.</p>
+ <div class="kp"><div><b>${tot}%</b>concluído</div><div><b>5</b>séries</div><div><b>9</b>matérias</div><div><b>45</b>folhas + planos</div></div>
+ <h4>Andamento por série</h4><div class="g2">${G.map((x,i)=>`<div class="card2"><b>${x}</b>${bars(i)}</div>`).join('')}</div>
+ <h4>Calendário sugerido</h4><div class="g2">${T.map(x=>`<div class="card2"><b>${x[0]}</b> • ${x[1]}<br>${x[2]}</div>`).join('')}</div>
+ <h4>Ações da gestão</h4><ul class="ls"><li>Reunião pedagógica semanal com a coordenação</li><li>Formação continuada dos professores a cada trimestre</li><li>Reunião com as famílias no início de cada trimestre</li><li>Apoiar as turmas e matérias com menor avanço no painel</li></ul>
+ <p><button class="btn" onclick="window.print()">🖨️ Imprimir relatório</button></p></section>`;
+}
+const rnd=n=>Math.floor(Math.random()*n);
+function newQ(){let r,t,a,b;
+ if(g===0){r=1+rnd(5);t='Quantas figuras? '+'🍎'.repeat(r)}
+ else if(g===1){a=1+rnd(6);b=1+rnd(5);t=a+' + '+b;r=a+b}
+ else if(g===2){a=8+rnd(10);b=1+rnd(9);t=a+' + '+b;r=a+b}
+ else{a=2+rnd(g===3?4:8);b=2+rnd(8);t=a+' × '+b;r=a*b}
+ const o=new Set([r]);let d=1;while(o.size<4){o.add(Math.max(0,r+(rnd(2)?d:-d)));d++}
+ Q={t,r,o:[...o].sort((x,y)=>x-y)};
+}
+function ans(n){const o=ld();if(n===Q.r){o.st=(o.st||0)+1;sv(o);newQ();Q.m='⭐ Muito bem! Próxima:'}else Q.m='💪 Tente de novo!';render()}
+function alu(){
+ const o=ld(),m=S[s],[t,a,b,c,w]=m.d[g].split('|'),ms=[a,b,c,'✂️ '+w],k=n=>'m'+g+'-'+s+'-'+n;
+ const dn=ms.filter((_,n)=>o[k(n)]).length;if(!Q.t)newQ();
+ return `<section class="pn"><h3>🎒 Espaço do Aluno</h3>${gch()}<div class="chips" style="margin-top:10px">${S.map((x,i)=>`<button class="${i===s?'on':''}" onclick="s=${i};render()">${x.e} ${x.k}</button>`).join('')}</div>
+ <div class="ms" style="--c:${m.c};--s:${m.s}"><h4>${m.e} ${m.k} — ${t}</h4>${ms.map((x,n)=>`<label class="mi"><input type="checkbox" ${o[k(n)]?'checked':''} onchange="tog('${k(n)}')">${x}</label>`).join('')}<p style="color:#243247"><b>${dn===4?'🏆 Parabéns! Missão cumprida!':'⭐ '+dn+' de 4 missões concluídas'}</b></p></div>
+ <div class="gm"><h4>🎮 Desafio rápido</h4><p class="qq">${Q.t}</p><div>${Q.o.map(n=>`<button class="op" onclick="ans(${n})">${n}</button>`).join('')}</div><p>${Q.m||''}</p><p>⭐ Estrelas ganhas: ${o.st||0}</p></div></section>`;
+}
+function render(){
+ $('rl').innerHTML=ROLES.map(x=>`<button class="${x[0]===rl?'on':''}" onclick="rl='${x[0]}';render()">${x[1]}</button>`).join('');
+ const P=rl==='prof';$('pc').style.display=P?'':'none';
+ if(P){render0();return}
+ $('hd').textContent=ROLES.find(x=>x[0]===rl)[1]+' • '+G[g];
+ $('out').innerHTML={coord:coord,dir:dir,alu:alu}[rl]();
+}
+function render0(){
+ $('gr').innerHTML=G.map((x,i)=>`<button class="${i===g?'on':''}" onclick="g=${i};render()">${x}</button>`).join('');
+ $('sb').innerHTML=S.map((m,i)=>`<button class="sub ${i===s?'on':''}" style="--c:${m.c};--s:${m.s}" onclick="s=${i};render()"><em>${m.e}</em><b>${m.k}</b></button>`).join('');
+ $('tp').innerHTML=V.map(x=>`<button class="${x[0]===v?'on':''}" onclick="v='${x[0]}';render()">${x[1]}</button>`).join('');
+ $('hd').textContent=S[s].k+' • '+G[g];
+ $('out').innerHTML=doc(s);
+}
+function all(){$('out').innerHTML=S.map((_,i)=>doc(i)).join('');window.print();render()}
+render();
+</script>
+</body>
+</html>
 
